@@ -12,10 +12,11 @@ class FBullCowGame
   public:
     FBullCowGame(/* args */);
     ~FBullCowGame();
-    void Reset(int Word); // TODO make a more rich return value
-    int GetMaxTries();
-    int GetCurrentTry();
-    bool IsGameWon();
+    int GetMaxTries() const;
+    int GetCurrentTry() const;
+    bool IsGameWon() const;
+
+    void Reset(int Word);                 // TODO make a more rich return value
     bool CheckGuessValidity(std::string); // TODO make a more rich return value
 };
 
