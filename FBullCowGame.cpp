@@ -1,11 +1,17 @@
 #include "FBullCowGame.h"
 
+FBullCowGame::FBullCowGame() { Reset(); }
+
+FBullCowGame::~FBullCowGame() {}
+
 int FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 
 int FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 
-void FBullCowGame::Reset(int Word)
+void FBullCowGame::Reset()
 {
+    MyCurrentTry = 1;
+    MyMaxTries = 8;
     return;
 }
 

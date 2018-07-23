@@ -32,6 +32,7 @@ bool AskToPlayAgain()
 
 void PlayGame()
 {
+    BCGame.Reset();
     int MaxTries = BCGame.GetMaxTries();
 
     for (int count = 1; count <= MaxTries; count++)
