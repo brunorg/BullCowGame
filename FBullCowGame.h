@@ -6,8 +6,8 @@ class FBullCowGame
 
     // ^^ Please try and ignore this and focus on the interface bellow ^^
   private:
-    int MyCurrentTry;
-    int MyMaxTries;
+    int MyCurrentTry = 1;
+    int MyMaxTries = 5;
 
   public:
     FBullCowGame(/* args */);
