@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-using namespace std;
-
 class FBullCowGame
 {
 
@@ -18,7 +16,7 @@ class FBullCowGame
     int GetMaxTries();
     int GetCurrentTry();
     bool IsGameWon();
-    bool CheckGuessValidity(string); // TODO make a more rich return value
+    bool CheckGuessValidity(std::string); // TODO make a more rich return value
 };
 
 FBullCowGame::FBullCowGame(/* args */)
