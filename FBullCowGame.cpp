@@ -3,7 +3,6 @@
 using int32 = int;
 
 FBullCowGame::FBullCowGame() { Reset(); }
-
 FBullCowGame::~FBullCowGame() {}
 
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
@@ -32,16 +31,35 @@ bool FBullCowGame::CheckGuessValidity(FString)
 }
 
 // receives a VALID guess, increments turn, and returns count
-BullCowCount FBullCowGame::SubmitGuess(FString)
+FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
 {
     // increment the turn number
     MyCurrentTry++;
 
     // setup a return variable
-    BullCowCount BullCowCount;
+    FBullCowCount BullCowCount;
 
-    // loop through all letters in the guess
-        // compates letters against the hidden word
+    int32 HiddenWordLength = MyHiddenWord.length();
+
+    for (int32 i = 0; i < HiddenWordLength; i++)
+    {
+        // loop through all letters in the guess
+        for (int32 j = 0; j < HiddenWordLength; j++)
+        {
+            // compares letters against the hidden word
+            if (MyHiddenWord[i] == Guess[j])
+            { // if they match then
+                if (i == j)
+                {                         // if they're in the same place
+                    BullCowCount.Bulls++; // increment bulls
+                }
+                else
+                {
+                    BullCowCount.Cows++; // increment cows
+                }
+            }
+        }
+    }
 
     return BullCowCount;
 }
