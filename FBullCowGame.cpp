@@ -1,6 +1,6 @@
 #include "FBullCowGame.h"
 #include <map>
-#define TMap std::map;
+#define TMap std::map
 
 using int32 = int;
 
@@ -54,13 +54,13 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 
     // loop through all letters in hidden word
     for (int32 MHWChar = 0; MHWChar < WordLength; MHWChar++)
-    {   // compares letters against guess
+    { // compares letters against guess
         for (int32 GChar = 0; GChar < WordLength; GChar++)
-        {   // if they match then
+        { // if they match then
             if (Guess[GChar] == MyHiddenWord[MHWChar])
-            {   // if they're in the same place
+            { // if they're in the same place
                 if (MHWChar == GChar)
-                {                         
+                {
                     BullCowCount.Bulls++; // increment bulls
                 }
                 else
@@ -71,26 +71,30 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
         }
     }
 
-    bGameIsWon = (BullCowCount.Bulls == WordLength);        
+    bGameIsWon = (BullCowCount.Bulls == WordLength);
 
     return BullCowCount;
 }
 
-bool FBullCowGame::IsIsogram(FString Word) const {
-    int32 WordLength = Word.length();
-    if (WordLength <= 1) {
-        return  true;
-    }
+bool FBullCowGame::IsIsogram(FString Word) const
+{   // treat 0 an 1 letter words as isograms
+    if (Word.length() <= 1) { return true; }
+
+    TMap<char, bool> LetterSeen;
 
     // loop through all letters in Word
-    for (int32 GChar = 0; GChar < WordLength; GChar++)
+    for (auto Letter : Word)
     {
-        // TODO check if letter is in map
-            // if letter is in map
-                // word is not isogram, return false
-            // else 
-                // add letter to the map and continue loop
-    }   
-    
+        Letter = tolower(Letter);
+        if (LetterSeen[Letter])
+        {
+            return false;
+        }
+        else
+        {
+            LetterSeen[Letter] = true;
+        }
+    }
+
     return true;
 }
