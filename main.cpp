@@ -13,6 +13,7 @@ void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 bool AskToPlayAgain();
+void PrintGameSummary();
 
 FBullCowGame BCGame; // instantiate a new game
 
@@ -48,7 +49,7 @@ void PlayGame()
     //  loop asking for guesses while the game is NOT won
     // and there are still tries remaining
 
-    while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() < MaxTries)
+    while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)
     {
         FText Guess = GetValidGuess(); // TODO make loop checking valid
 
@@ -61,7 +62,7 @@ void PlayGame()
         std::cout << "Your guess was: " << Guess << "\n\n";
     }
 
-    // TODO summarise game
+    PrintGameSummary();
 }
 
 // loop continually until the user gives a valide guess
@@ -99,8 +100,19 @@ FText GetValidGuess()
 
 bool AskToPlayAgain()
 {
-    std::cout << "Do you want to play again (y/n)? ";
+    std::cout << "Do you want to play again with the same hidden word (y/n)? ";
     FText Response = "";
     std::getline(std::cin, Response);
     return (Response[0] == 'y') || (Response[0] == 'Y');
+}
+
+// introduce the game
+void PrintGameSummary()
+{
+    if (BCGame.IsGameWon()) {
+        std::cout << "Congratulations YOU WIN the game in " << BCGame.GetCurrentTry() << " tries!\n\n";
+    } else {
+        std::cout << "You lose. Better luck next time!!\n\n";
+    }
+    return;
 }

@@ -25,11 +25,11 @@ void FBullCowGame::Reset()
 
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
-    if (false)
+    if (false) // TODO write function
     {
         return EGuessStatus::Not_Isogram;
     }
-    else if (false)
+    else if (false) // TODO write function
     {
         return EGuessStatus::Not_LowerCase;
     }
@@ -46,9 +46,9 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 // receives a VALID guess, increments turn, and returns count
 FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
 {
-    MyCurrentTry++;
     FBullCowCount BullCowCount;
     int32 WordLength = MyHiddenWord.length();
+    MyCurrentTry++;
 
     // loop through all letters in hidden word
     for (int32 MHWChar = 0; MHWChar < WordLength; MHWChar++)
@@ -69,7 +69,7 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
         }
     }
 
-    bGameIsWon = (BullCowCount.Bulls == WordLength);
+    bGameIsWon = (BullCowCount.Bulls == WordLength);        
 
     return BullCowCount;
 }
