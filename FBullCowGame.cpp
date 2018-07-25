@@ -7,13 +7,14 @@ FBullCowGame::~FBullCowGame() {}
 
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
+int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 
 void FBullCowGame::Reset()
 {
     constexpr int32 MAX_TRIES = 5;
-    MyMaxTries = MAX_TRIES;
-
     const FString HIDDEN_WORD = "ant";
+
+    MyMaxTries = MAX_TRIES;
     MyHiddenWord = HIDDEN_WORD;
 
     MyCurrentTry = 1;
@@ -39,7 +40,7 @@ FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
     // setup a return variable
     FBullCowCount BullCowCount;
 
-    int32 HiddenWordLength = MyHiddenWord.length();
+    int32 HiddenWordLength = GetHiddenWordLength();
 
     for (int32 MHWChar = 0; MHWChar < HiddenWordLength; MHWChar++)
     {
