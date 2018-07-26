@@ -34,7 +34,25 @@ int main()
 // introduce the game
 void PrintIntro()
 {
-    std::cout << "\n\nWelcome to Bulls and Cows, a fun word game" << std::endl;
+    std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
+    std::cout << std::endl;
+    std::cout << "              .=     ,        =.                                                              " << std::endl;
+    std::cout << "      _  _   /\'/    )\\,/,/(_   \\ \\                                 )\\,/,/(_                   " << std::endl;
+    std::cout << "       `//-.|  (  ,\\\\)\\//\\)\\/_  ) |                             ,\\\\)\\//\\)\\/_                  " << std::endl;
+    std::cout << "       //___\\   `\\\\\\/\\\\/\\/\\\\///\'  /                     ___    `\\\\\\/\\\\/\\/\\\\///\'               " << std::endl;
+    std::cout << "    ,-\"~`-._ `\"--\'_   `\"\"\"`  _ \\`\'\"~-,_            ,-\"~`-._ `\"--\'_   `\"\"\"`  _ \\`\'\"~-,_        " << std::endl;
+    std::cout << "    \\       `-.  \'_`.      .\'_` \\ ,-\"~`/           \\       `-.  \'_`.      .\'_` \\ ,-\"~`/       " << std::endl;
+    std::cout << "     `.__.-\'`/   (-\\        /-) |-.__,\'             `.__.-\'`/   (-\\        /-) |-.__,\'        " << std::endl;
+    std::cout << "       ||   |     \\O)  /^\\ (O/  |                     ||   |     \\O)  /^\\ (O/  |              " << std::endl;
+    std::cout << "       `\\\\  |         /   `\\    /                     `\\\\  |         /   `\\    /              " << std::endl;
+    std::cout << "         \\\\  \\       /      `\\ /                        \\\\  \\       /      `\\ /               " << std::endl;
+    std::cout << "          `\\\\ `-.  /\' .---.--.\\                          `\\\\ `-.  /\' .---.--.\\                " << std::endl;
+    std::cout << "            `\\\\/`~(, \'()      (\'                           `\\\\/`~(, \'()      (\'               " << std::endl;
+    std::cout << "             /(O) \\\\   _,.-.,_)                             /(O) \\\\   _,.-.,_)                " << std::endl;
+    std::cout << "            //  \\\\ `\\\'`      /                             //  \\\\ `\\\'`      /                 " << std::endl;
+    std::cout << "      jgs  / |  ||   `\"\"\"\"~\"`                        jgs  / |  ||   `\"\"\"\"~\"`                  " << std::endl;
+    std::cout << "         /\'  |__||                                      /\'  |__||                             " << std::endl;
+    std::cout << "               `o                                             `o                              " << std::endl;
     std::cout << "Can you guess the " << BCGame.GetHiddenWordLength();
     std::cout << " letter isogram I'm thinking of?" << std::endl;
     std::cout << std::endl;
@@ -58,7 +76,7 @@ void PlayGame()
 
         // print32 number of bulls and cows
         std::cout << "Bulls = " << BullCowCount.Bulls;
-        std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
+        std::cout << ". Cows = " << BullCowCount.Cows << "\n\n";
     }
 
     PrintGameSummary();
@@ -73,26 +91,26 @@ FText GetValidGuess()
     {
         // get guess from the player
         int32 CurrentTry = BCGame.GetCurrentTry();
-        std::cout << "Enter you guess (" << CurrentTry << "): ";
+        int32 MaxTries = BCGame.GetMaxTries();
+        std::cout << "Enter you guess (" << CurrentTry << " of " << MaxTries << "): ";
         std::getline(std::cin, Guess);
 
         Status = BCGame.CheckGuessValidity(Guess);
         switch (Status)
         {
         case EGuessStatus::Wrong_Lenght:
-            std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter word.\n";
+            std::cout << "Please enter a " << BCGame.GetHiddenWordLength() << " letter word.\n\n";
             break;
         case EGuessStatus::Not_Isogram:
-            std::cout << "Please enter without repeating letters.\n";
+            std::cout << "Please enter without repeating letters.\n\n";
             break;
         case EGuessStatus::Not_LowerCase:
-            std::cout << "Please enter all lowercase letters.\n";
+            std::cout << "Please enter all lowercase letters.\n\n";
             break;
         default:
             // assume the guess is valid
             break;
         }
-        std::cout << std::endl;
     } while (Status != EGuessStatus::OK);
     return Guess;
 }
@@ -109,9 +127,9 @@ bool AskToPlayAgain()
 void PrintGameSummary()
 {
     if (BCGame.IsGameWon()) {
-        std::cout << "Congratulations YOU WIN the game in " << BCGame.GetCurrentTry() << " tries!\n\n";
+        std::cout << "\nCongratulations YOU WIN the game!\n";
     } else {
-        std::cout << "You lose. Better luck next time!!\n\n";
+        std::cout << "\nYou lose. Better luck next time!!\n";
     }
     return;
 }
