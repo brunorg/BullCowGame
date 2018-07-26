@@ -2,22 +2,26 @@
 This acts as the view in a MVC pattern, and is responsible for all
 user interaction. For game logic see the FBullCowGame class.
  */
+#pragma once
+
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
+// to make syntax Unreal friendly
 using FText = std::string;
 using int32 = int;
 
+// function prototypes as outside a class
 void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
 bool AskToPlayAgain();
 void PrintGameSummary();
 
-FBullCowGame BCGame; // instantiate a new game
+FBullCowGame BCGame; // instantiate a new game, with we re-user across plays
 
-// the entry point32 for our application
+// the entry point for our application
 int main()
 {
     bool bPlayAgain = false;
@@ -66,10 +70,9 @@ void PlayGame()
 
     //  loop asking for guesses while the game is NOT won
     // and there are still tries remaining
-
     while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)
     {
-        FText Guess = GetValidGuess(); // TODO make loop checking valid
+        FText Guess = GetValidGuess();
 
         // submit valid guess to the game, and receive count
         FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
@@ -123,12 +126,14 @@ bool AskToPlayAgain()
     return (Response[0] == 'y') || (Response[0] == 'Y');
 }
 
-// introduce the game
 void PrintGameSummary()
 {
-    if (BCGame.IsGameWon()) {
+    if (BCGame.IsGameWon())
+    {
         std::cout << "\nCongratulations YOU WIN the game!\n";
-    } else {
+    }
+    else
+    {
         std::cout << "\nYou lose. Better luck next time!!\n";
     }
     return;
